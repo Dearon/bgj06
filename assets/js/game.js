@@ -1,10 +1,3 @@
-levels = {};
-levels[1] = {};
-levels[1]['layout'] = [[' ', ' ', ' '],
-		       [' ', 'r', ' '],
-		       [' ', ' ', ' ']];
-levels[1]['start'] = ['1', '1'];
-
 var blockSize = 50;
 var sidebarWidth = 205;
 
@@ -19,6 +12,7 @@ colors['i'] = '#4b0082';
 colors['v'] = '#8f00ff';
 colors['background'] = '#181818';
 colors['sidebar_bg'] = '#D63D22';
+colors['sidebar_text'] = '#000';
 colors['game_bg'] = '#303030';
 
 var state = {};
@@ -42,6 +36,7 @@ function draw(stage) {
 	stage.clear();
 	drawSidebar(stage);
 	drawLevel(stage);
+	checkWin(stage);
 }
 
 function drawSidebar(stage) {
@@ -55,6 +50,27 @@ function drawSidebar(stage) {
 	stage.addChild(border);
 	stage.update();
 
+	var text = new createjs.Text("Goal:", "25px Arial", colors['sidebar_text']);
+	text.x = 10;
+	text.y = 10;
+	stage.addChild(text);
+	stage.update();
+
+	var level = levels[state['level']];
+
+	for (var i = 0; i < level['goals'].length; i++) {
+		var goalMessage = level['goals'][i][1] + " blocks of ";
+		if (level['goals'][i][0] == 'r') {
+			goalMessage = goalMessage + "red";
+		}
+		goalMessage = goalMessage + " needed";
+
+		var text = new createjs.Text(goalMessage, "15px Arial", colors['sidebar_text']);
+		text.x = 10;
+		text.y = 45;
+		stage.addChild(text);
+		stage.update();
+	}
 }
 
 function drawLevel(stage) {
@@ -84,6 +100,35 @@ function drawLevel(stage) {
 	}
 }
 
+function checkWin(stage) {
+	var level = levels[state['level']];
+	var tiles = { r: 0 };
+
+	for(var i = 0; i < level['layout'].length; i++) {
+		for(var j = 0; j < level['layout'][i].length; j++) {
+			if (level['layout'][j][i] == 'r') {
+				tiles['r']++;
+			}
+		}
+	}
+
+	var won = true;
+
+	for (var i = 0; i < level['goals'].length; i++) {
+		if (level['goals'][i][1] > tiles[level['goals'][i][0]]) {
+			won = false;
+		}
+	}
+
+	if (won) {
+		var text = new createjs.Text("You win! Yay", "80px Arial", colors['sidebar_text']);
+		text.x = 100;
+		text.y = 200;
+		stage.addChild(text);
+		stage.update();
+	}
+}
+
 function runGame(stage) {
 	var level = levels[state['level']];
 	var width = level['layout'][0].length - 1;
@@ -98,8 +143,6 @@ function runGame(stage) {
 				level['layout'][state['position'][1]][state['position'][0]] = state['color'];
 
 				draw(stage);
-
-				console.log('Up: ' + state['position']);
 			}
 		}
 	});
@@ -112,8 +155,6 @@ function runGame(stage) {
 				level['layout'][state['position'][1]][state['position'][0]] = state['color'];
 
 				draw(stage);
-
-				console.log('Down: ' + state['position']);
 			}
 		}
 	});
@@ -126,8 +167,6 @@ function runGame(stage) {
 				level['layout'][state['position'][1]][state['position'][0]] = state['color'];
 
 				draw(stage);
-
-				console.log('Left: ' + state['position']);
 			}
 		}
 	});
@@ -140,8 +179,6 @@ function runGame(stage) {
 				level['layout'][state['position'][1]][state['position'][0]] = state['color'];
 
 				draw(stage);
-
-				console.log('Right: ' + state['position']);
 			}
 		}
 	});
