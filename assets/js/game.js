@@ -1,12 +1,19 @@
-level01 = [[' ', ' ', ' '],
-	   [' ', 'S', ' '],
-	   [' ', ' ', ' ']];
+levels = {};
+levels[1] = {};
+levels[1]['layout'] = [[' ', ' ', ' '],
+		       [' ', 'r', ' '],
+		       [' ', ' ', ' ']];
+levels[1]['start'] = ['1', '1'];
 
 var blockSize = 50;
 
 var colors = {};
 colors[' '] = '#fff';
-colors['S'] = '#ff0000';
+colors['r'] = '#ff0000';
+
+var state = {};
+state['level'] = '1';
+state['position'] = [];
 
 function init() {
 	var canvas = document.getElementById("game");
@@ -17,10 +24,9 @@ function init() {
 }
 
 function drawLevel(stage) {
-	console.log(level01);
-
-	var width = level01[0].length * 50;
-	var height = level01.length * 50;
+	var level = levels[state['level']];
+	var width = level['layout'][0].length * 50;
+	var height = level['layout'].length * 50;
 	var xStart = (stage.canvas.width - width) / 2;
 	var yStart = (stage.canvas.height - height) / 2;
 
@@ -28,12 +34,12 @@ function drawLevel(stage) {
 
 	var block = new createjs.Shape();
 
-	for(var i = 0; i < level01.length; i++) {
-		for(var j = 0; j < level01[i].length; j++) {
+	for(var i = 0; i < level['layout'].length; i++) {
+		for(var j = 0; j < level['layout'][i].length; j++) {
 			var x = xStart + (50 * j);
 			var y = yStart + (50 * i);
 
-			block.graphics.beginFill(colors[level01[i][j]]).drawRect(x, y, blockSize, blockSize);
+			block.graphics.beginFill(colors[level['layout'][i][j]]).drawRect(x, y, blockSize, blockSize);
 			stage.addChild(block);
 
 			stage.update();
