@@ -14,23 +14,28 @@ colors['r'] = '#ff0000';
 var state = {};
 state['level'] = '1';
 state['position'] = [];
+state['color'] = '';
 
 function init() {
 	var canvas = document.getElementById("game");
 	var stage = new createjs.Stage(canvas);
+
+	var level = levels[state['level']];
+	state['position'] = levels[state['level']]['start'];
+	state['color'] = level['layout'][state['position'][0]][state['position'][1]];
 
 	drawLevel(stage);
 	runGame(stage);
 }
 
 function drawLevel(stage) {
+	stage.clear();
+
 	var level = levels[state['level']];
 	var width = level['layout'][0].length * 50;
 	var height = level['layout'].length * 50;
 	var xStart = (stage.canvas.width - width) / 2;
 	var yStart = (stage.canvas.height - height) / 2;
-
-	console.log(xStart + " " + yStart);
 
 	var block = new createjs.Shape();
 
@@ -48,16 +53,64 @@ function drawLevel(stage) {
 }
 
 function runGame(stage) {
+	var level = levels[state['level']];
+	var width = level['layout'][0].length - 1;
+	var height = level['layout'].length - 1;
+
 	Mousetrap.bind('up', function() {
-		console.log('up');
+		if (0 < state['position'][1]) {
+			newPos = parseInt(state['position'][1]) - 1;
+
+			if (level['layout'][newPos][state['position'][0]] == ' ') {
+				state['position'][1] = newPos;
+				level['layout'][state['position'][1]][state['position'][0]] = state['color'];
+
+				drawLevel(stage);
+
+				console.log('Up: ' + state['position']);
+			}
+		}
 	});
 	Mousetrap.bind('down', function() {
-		console.log('down');
+		if (height > state['position'][1]) {
+			newPos = parseInt(state['position'][1]) + 1;
+
+			if (level['layout'][newPos][state['position'][0]] == ' ') {
+				state['position'][1] = newPos;
+				level['layout'][state['position'][1]][state['position'][0]] = state['color'];
+
+				drawLevel(stage);
+
+				console.log('Down: ' + state['position']);
+			}
+		}
 	});
 	Mousetrap.bind('left', function() {
-		console.log('left');
+		if (0 < state['position'][0]) {
+			newPos = parseInt(state['position'][0]) - 1;
+
+			if (level['layout'][state['position'][1]][newPos] == ' ') {
+				state['position'][0] = newPos;
+				level['layout'][state['position'][1]][state['position'][0]] = state['color'];
+
+				drawLevel(stage);
+
+				console.log('Left: ' + state['position']);
+			}
+		}
 	});
 	Mousetrap.bind('right', function() {
-		console.log('right');
+		if (width > state['position'][0]) {
+			newPos = parseInt(state['position'][0]) + 1;
+
+			if (level['layout'][state['position'][1]][newPos] == ' ') {
+				state['position'][0] = newPos;
+				level['layout'][state['position'][1]][state['position'][0]] = state['color'];
+
+				drawLevel(stage);
+
+				console.log('Right: ' + state['position']);
+			}
+		}
 	});
 }
