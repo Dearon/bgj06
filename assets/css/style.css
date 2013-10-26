@@ -3,7 +3,7 @@ body {
 	color: #fff;
 }
 
-.container_12 {
-	margin-top: 5em;
-	margin-bottom: 5em;
+.game {
+	width: 622px;
+	margin: 1em auto;
 }
