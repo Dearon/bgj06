@@ -30,6 +30,7 @@ var colorNames = {
 };
 
 var state = {
+	section: 'menu',
 	level: {},
 	position: [],
 	color: ''
