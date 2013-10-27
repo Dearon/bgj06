@@ -15,7 +15,8 @@ var colors = {
 	background: '#181818',
 	sidebar_bg: '#D63D22',
 	sidebar_text: '#000',
-	game_bg: '#303030'
+	game_bg: '#303030',
+	circle: '#000'
 };
 
 var colorNames = {
@@ -29,7 +30,7 @@ var colorNames = {
 };
 
 var state = {
-	level: 1,
+	level: {},
 	position: [],
 	color: ''
 };
