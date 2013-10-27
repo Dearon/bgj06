@@ -67,167 +67,36 @@ levels = {
 		text: "Have fun!"
 	},
 	5: {
-		layout: [[' ']],
+		layout: [['r', ' ', ' '],
+			 ['O', 'I', ' '],
+			 [' ', ' ', ' ']],
 		start: [0, 0],
 		goalsLeft: {
-			r: 0,
-			o: 0,
+			r: 4,
+			o: 4,
 			y: 0,
 			g: 0,
 			b: 0,
-			i: 0,
+			i: 1,
 			v: 0,
-			total: 0
+			total: 9
 		},
 		text: ""
 	},
 	6: {
-		layout: [[' ']],
-		start: [0, 0],
+		layout: [[' ', 'G', ' ', 'B', ' '],
+			 ['V', 'V', ' ', 'v', 'V'],
+			 [' ', 'B', ' ', 'G', ' ']],
+		start: [3, 1],
 		goalsLeft: {
 			r: 0,
 			o: 0,
 			y: 0,
-			g: 0,
-			b: 0,
+			g: 4,
+			b: 5,
 			i: 0,
-			v: 0,
-			total: 0
-		},
-		text: ""
-	},
-	7: {
-		layout: [[' ']],
-		start: [0, 0],
-		goalsLeft: {
-			r: 0,
-			o: 0,
-			y: 0,
-			g: 0,
-			b: 0,
-			i: 0,
-			v: 0,
-			total: 0
-		},
-		text: ""
-	},
-	8: {
-		layout: [[' ']],
-		start: [0, 0],
-		goalsLeft: {
-			r: 0,
-			o: 0,
-			y: 0,
-			g: 0,
-			b: 0,
-			i: 0,
-			v: 0,
-			total: 0
-		},
-		text: ""
-	},
-	9: {
-		layout: [[' ']],
-		start: [0, 0],
-		goalsLeft: {
-			r: 0,
-			o: 0,
-			y: 0,
-			g: 0,
-			b: 0,
-			i: 0,
-			v: 0,
-			total: 0
-		},
-		text: ""
-	},
-	10: {
-		layout: [[' ']],
-		start: [0, 0],
-		goalsLeft: {
-			r: 0,
-			o: 0,
-			y: 0,
-			g: 0,
-			b: 0,
-			i: 0,
-			v: 0,
-			total: 0
-		},
-		text: ""
-	},
-	11: {
-		layout: [[' ']],
-		start: [0, 0],
-		goalsLeft: {
-			r: 0,
-			o: 0,
-			y: 0,
-			g: 0,
-			b: 0,
-			i: 0,
-			v: 0,
-			total: 0
-		},
-		text: ""
-	},
-	12: {
-		layout: [[' ']],
-		start: [0, 0],
-		goalsLeft: {
-			r: 0,
-			o: 0,
-			y: 0,
-			g: 0,
-			b: 0,
-			i: 0,
-			v: 0,
-			total: 0
-		},
-		text: ""
-	},
-	13: {
-		layout: [[' ']],
-		start: [0, 0],
-		goalsLeft: {
-			r: 0,
-			o: 0,
-			y: 0,
-			g: 0,
-			b: 0,
-			i: 0,
-			v: 0,
-			total: 0
-		},
-		text: ""
-	},
-	14: {
-		layout: [[' ']],
-		start: [0, 0],
-		goalsLeft: {
-			r: 0,
-			o: 0,
-			y: 0,
-			g: 0,
-			b: 0,
-			i: 0,
-			v: 0,
-			total: 0
-		},
-		text: ""
-	},
-	15: {
-		layout: [[' ']],
-		start: [0, 0],
-		goalsLeft: {
-			r: 0,
-			o: 0,
-			y: 0,
-			g: 0,
-			b: 0,
-			i: 0,
-			v: 0,
-			total: 0
+			v: 6,
+			total: 15
 		},
 		text: ""
 	}
