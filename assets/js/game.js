@@ -2,12 +2,6 @@ function init() {
 	var canvas = document.getElementById("game");
 	var stage = new createjs.Stage(canvas);
 
-	//state['level'] = $.extend({}, levels[1]);
-	//state['levelNumber'] = 1;
-	//state['position'] = state['level']['start'];
-	//state['color'] = state['level']['layout'][state['position'][0]][state['position'][1]];
-
-	//check(stage);
 	update(stage);
 
 	Mousetrap.bind('up', function() {
@@ -91,7 +85,7 @@ function update(stage) {
 		container.addEventListener("click", function(evt) {
 			state['level'] = $.extend(true, {}, levels[state['levelNumber']]);
 			state['position'] = state['level']['start'];
-			state['color'] = state['level']['layout'][state['position'][0]][state['position'][1]];
+			state['color'] = state['level']['layout'][state['position'][1]][state['position'][0]];
 
 			check(stage);
 			update(stage);
@@ -148,7 +142,7 @@ function update(stage) {
 				state['level'] = $.extend(true, {}, levels[index]);
 				state['levelNumber'] = index;
 				state['position'] = state['level']['start'];
-				state['color'] = state['level']['layout'][state['position'][0]][state['position'][1]];
+				state['color'] = state['level']['layout'][state['position'][1]][state['position'][0]];
 
 				check(stage);
 				update(stage);
